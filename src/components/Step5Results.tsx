@@ -153,7 +153,7 @@ export default function Step5Results({ companyInfo, challenges, maturity, priori
 
         <div className="res-cta">
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
-            <FlagareLogo height={44} variant="full" dark />
+            <FlagareLogo height={44} />
           </div>
           <h3>¿Listo para dar el siguiente paso?</h3>
           <p>Agenda una sesión estratégica con nuestro equipo para profundizar en estas recomendaciones y diseñar tu roadmap personalizado.</p>

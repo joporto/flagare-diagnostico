@@ -4,7 +4,7 @@ export default function TopBar() {
   return (
     <div className="topbar">
       <div className="topbar-left">
-        <FlagareLogo height={38} variant="full" dark />
+        <FlagareLogo height={38} />
       </div>
       <div className="topbar-right">
         <div className="session-badge">

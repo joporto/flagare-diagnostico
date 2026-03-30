@@ -14,6 +14,7 @@ const steps = [
 
 export default function Sidebar({ currentStep, challengeCount, maturityPercent }: SidebarProps) {
   const progress = Math.min(100, Math.round(((currentStep - 1) / 4) * 100 + challengeCount * 2));
+  const hasReachedMaturity = currentStep >= 3;
 
   return (
     <div className="sidebar">
@@ -38,7 +39,7 @@ export default function Sidebar({ currentStep, challengeCount, maturityPercent }
         </div>
         <div className="sidebar-stat">
           <span className="label">Madurez</span>
-          <span className="val">{maturityPercent}%</span>
+          <span className="val">{hasReachedMaturity ? `${maturityPercent}%` : '—'}</span>
         </div>
         <div className="sidebar-stat">
           <span className="label">Progreso</span>
