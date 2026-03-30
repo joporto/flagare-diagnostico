@@ -2,7 +2,7 @@
   --o: #EB6A2C;
   --r: #E43A3C;
   --ol: #E68B2B;
-  --d: #333;
+  --d: #333333;
   --d2: #2A2A2A;
   --cy: #14C8D9;
   --g: #41F084;
@@ -20,7 +20,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Work Sans', system-ui, sans-serif;
+  font-family: 'Lato', system-ui, sans-serif;
   background: var(--ow);
   color: var(--d);
   -webkit-font-smoothing: antialiased;
@@ -139,7 +139,7 @@ body {
 
 .step-header { margin-bottom: 32px; }
 .step-num { font-size: 12px; font-weight: 700; color: var(--o); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-.step-title { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 800; color: var(--d); line-height: 1.2; margin-bottom: 8px; }
+.step-title { font-family: 'Open Sans', sans-serif; font-size: 28px; font-weight: 800; color: var(--d); line-height: 1.2; margin-bottom: 8px; }
 .step-desc { font-size: 15px; color: var(--gt); line-height: 1.6; }
 
 /* Form elements */
@@ -238,7 +238,7 @@ body {
 }
 .slider-val {
   min-width: 36px; text-align: center;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 20px; font-weight: 700; color: var(--o);
 }
 .slider-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--gm); margin-top: 4px; }
@@ -277,11 +277,11 @@ body {
 
 .res-hero { text-align: center; padding: 40px 0 30px; }
 .res-hero .company-name {
-  font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 600;
+  font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 600;
   color: var(--o); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
 }
 .res-hero h2 {
-  font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 800;
+  font-family: 'Open Sans', sans-serif; font-size: 32px; font-weight: 800;
   color: var(--d); margin-bottom: 4px;
 }
 .res-hero .sub { font-size: 14px; color: var(--gt); }
@@ -298,7 +298,7 @@ body {
   background: var(--ow); display: flex; flex-direction: column;
   align-items: center; justify-content: center;
 }
-.ring-score { font-family: 'Outfit', sans-serif; font-size: 40px; font-weight: 800; color: var(--o); }
+.ring-score { font-family: 'Open Sans', sans-serif; font-size: 40px; font-weight: 800; color: var(--o); }
 .ring-label { font-size: 11px; color: var(--gm); font-weight: 500; }
 
 /* Maturity level */
@@ -314,14 +314,14 @@ body {
 .dims { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
 @media (max-width: 600px) { .dims { grid-template-columns: 1fr 1fr; } }
 .dim { background: var(--w); border: 1px solid var(--gl); border-radius: 12px; padding: 16px; text-align: center; }
-.dim .dv { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 700; }
+.dim .dv { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 700; }
 .dim .dl { font-size: 11px; color: var(--gt); margin: 4px 0 8px; font-weight: 500; }
 .dim .db { height: 4px; background: var(--gl); border-radius: 2px; overflow: hidden; }
 .dim .df { height: 100%; border-radius: 2px; transition: width 1.2s ease; }
 
 /* Section titles */
 .res-section { margin-bottom: 36px; }
-.res-section h3 { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: var(--d); margin-bottom: 6px; }
+.res-section h3 { font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 700; color: var(--d); margin-bottom: 6px; }
 .res-section .rs-sub { font-size: 13px; color: var(--gt); margin-bottom: 18px; }
 
 /* Key findings */
@@ -398,7 +398,7 @@ body {
   height: 3px; background: var(--fire);
 }
 .res-cta h3 {
-  font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 800;
+  font-family: 'Open Sans', sans-serif; font-size: 24px; font-weight: 800;
   color: var(--w); margin-bottom: 10px;
 }
 .res-cta p {

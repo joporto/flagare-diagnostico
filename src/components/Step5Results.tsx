@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { CompanyInfo, MaturityData, ContactInfo } from '../types';
 import { calculateOverallScore, getDimensions, getMaturityLevel, getFindings, getScoredCards, groupCardsByCategory } from '../utils/scoring';
 import ContactForm from './ContactForm';
+import FlagareLogo from './FlagareLogo';
 
 interface Props {
   companyInfo: CompanyInfo;
@@ -151,6 +152,9 @@ export default function Step5Results({ companyInfo, challenges, maturity, priori
         <ContactForm contact={contact} onChange={onContactChange} />
 
         <div className="res-cta">
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+            <FlagareLogo height={44} variant="full" dark />
+          </div>
           <h3>¿Listo para dar el siguiente paso?</h3>
           <p>Agenda una sesión estratégica con nuestro equipo para profundizar en estas recomendaciones y diseñar tu roadmap personalizado.</p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>

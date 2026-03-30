@@ -30,7 +30,7 @@ export default function SavedSessions({ onClose }: Props) {
         maxWidth: '700px', width: '90%', maxHeight: '80vh', overflow: 'auto',
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '22px', fontWeight: 700 }}>
+          <h3 style={{ fontFamily: "'Open Sans', sans-serif", fontSize: '22px', fontWeight: 700 }}>
             Consultas guardadas ({sessions.length})
           </h3>
           <div style={{ display: 'flex', gap: '10px' }}>
