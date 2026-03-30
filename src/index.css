@@ -28,26 +28,26 @@ body {
 
 /* Top bar */
 .topbar {
-  background: var(--d2);
+  background: var(--w);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 14px 40px;
   border-bottom: 3px solid;
   border-image: var(--fire) 1;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
 .topbar-left { display: flex; align-items: center; gap: 12px; }
-.topbar .brand { font-weight: 700; font-size: 18px; color: var(--w); letter-spacing: 1.5px; }
-.topbar .brand-sub { font-size: 11px; color: var(--gm); letter-spacing: 0.5px; }
 .topbar-right { display: flex; align-items: center; gap: 20px; }
 .topbar-actions {
-  background: var(--d2);
+  background: var(--ow);
   padding: 6px 40px;
   display: flex;
   justify-content: flex-end;
+  border-bottom: 1px solid var(--gl);
 }
 .session-badge {
-  background: rgba(235,106,44,.15);
+  background: rgba(235,106,44,.1);
   color: var(--o);
   padding: 5px 14px;
   border-radius: 20px;
