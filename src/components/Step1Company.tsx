@@ -12,9 +12,23 @@ export default function Step1Company({ data, onChange, onNext }: Props) {
   const [urlAnalyzed, setUrlAnalyzed] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
   const [insight, setInsight] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const update = (field: keyof CompanyInfo, value: string) => {
     onChange({ ...data, [field]: value });
+    if (errors[field]) setErrors(prev => { const n = { ...prev }; delete n[field]; return n; });
+  };
+
+  const validate = (): boolean => {
+    const e: Record<string, string> = {};
+    if (!data.company.trim()) e.company = 'El nombre de la empresa es requerido';
+    if (!data.industry) e.industry = 'Selecciona una industria';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleNext = () => {
+    if (validate()) onNext();
   };
 
   const analyzeUrl = () => {
@@ -31,31 +45,33 @@ export default function Step1Company({ data, onChange, onNext }: Props) {
   };
 
   return (
-    <div className="step active">
+    <div className="step active" role="form" aria-label="Información de la empresa">
       <div className="step-header">
         <div className="step-num">Paso 1 de 5</div>
-        <div className="step-title">Tu empresa</div>
-        <div className="step-desc">Conocer tu empresa nos permite personalizar las recomendaciones de IA. Toda la información es confidencial.</div>
+        <h1 className="step-title">Tu empresa</h1>
+        <p className="step-desc">Conocer tu empresa nos permite personalizar las recomendaciones de IA. Toda la información es confidencial.</p>
       </div>
 
-      <div className="callout callout-tip">
-        <span className="ci">💡</span>
+      <div className="callout callout-tip" role="note">
+        <span className="ci" aria-hidden="true">💡</span>
         <span>En sesión con cliente: completa estos campos mientras conversas. El análisis de URL genera un buen punto de partida.</span>
       </div>
 
       <div className="row2">
-        <div className="field">
-          <label>Empresa <span className="req">*</span></label>
-          <input value={data.company} onChange={e => update('company', e.target.value)} placeholder="Nombre de la empresa" />
+        <div className={`field${errors.company ? ' field-error' : ''}`}>
+          <label htmlFor="fCompany">Empresa <span className="req" aria-label="requerido">*</span></label>
+          <input id="fCompany" value={data.company} onChange={e => update('company', e.target.value)} placeholder="Nombre de la empresa" aria-required="true" aria-invalid={!!errors.company} />
+          {errors.company && <div className="field-error-msg" role="alert">{errors.company}</div>}
         </div>
         <div className="field">
-          <label>Sitio web</label>
+          <label htmlFor="fUrl">Sitio web</label>
           <div className="url-wrap">
-            <input value={data.url} onChange={e => update('url', e.target.value)} placeholder="https://tuempresa.com" />
+            <input id="fUrl" value={data.url} onChange={e => update('url', e.target.value)} placeholder="https://tuempresa.com" type="url" />
             <button
               className={`url-btn${urlAnalyzed ? ' done' : ''}`}
               disabled={analyzing || !data.url}
               onClick={analyzeUrl}
+              aria-label={analyzing ? 'Analizando sitio web' : urlAnalyzed ? 'Sitio analizado' : 'Analizar sitio web'}
             >
               {analyzing ? 'Analizando...' : urlAnalyzed ? '✓ Analizado' : 'Analizar sitio'}
             </button>
@@ -64,19 +80,20 @@ export default function Step1Company({ data, onChange, onNext }: Props) {
       </div>
 
       {insight && (
-        <div className="ai-insight show" dangerouslySetInnerHTML={{ __html: insight }} />
+        <div className="ai-insight show" role="status" dangerouslySetInnerHTML={{ __html: insight }} />
       )}
 
       <div className="row2">
-        <div className="field">
-          <label>Industria <span className="req">*</span></label>
-          <select value={data.industry} onChange={e => update('industry', e.target.value)}>
+        <div className={`field${errors.industry ? ' field-error' : ''}`}>
+          <label htmlFor="fIndustry">Industria <span className="req" aria-label="requerido">*</span></label>
+          <select id="fIndustry" value={data.industry} onChange={e => update('industry', e.target.value)} aria-required="true" aria-invalid={!!errors.industry}>
             {INDUSTRY_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
+          {errors.industry && <div className="field-error-msg" role="alert">{errors.industry}</div>}
         </div>
         <div className="field">
-          <label>Tamaño (colaboradores)</label>
-          <select value={data.size} onChange={e => update('size', e.target.value)}>
+          <label htmlFor="fSize">Tamaño (colaboradores)</label>
+          <select id="fSize" value={data.size} onChange={e => update('size', e.target.value)}>
             {SIZE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </div>
@@ -84,22 +101,22 @@ export default function Step1Company({ data, onChange, onNext }: Props) {
 
       <div className="row2">
         <div className="field">
-          <label>Tu rol</label>
-          <select value={data.role} onChange={e => update('role', e.target.value)}>
+          <label htmlFor="fRole">Tu rol</label>
+          <select id="fRole" value={data.role} onChange={e => update('role', e.target.value)}>
             {ROLE_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
         </div>
       </div>
 
       <div className="field">
-        <label>Contexto adicional</label>
-        <textarea value={data.context} onChange={e => update('context', e.target.value)} placeholder="¿Qué motivó esta sesión? ¿Hay un proyecto puntual, un mandato del directorio, presión competitiva?" />
+        <label htmlFor="fContext">Contexto adicional</label>
+        <textarea id="fContext" value={data.context} onChange={e => update('context', e.target.value)} placeholder="¿Qué motivó esta sesión? ¿Hay un proyecto puntual, un mandato del directorio, presión competitiva?" />
       </div>
 
-      <div className="nav-bar">
+      <nav className="nav-bar" aria-label="Navegación del wizard">
         <div></div>
-        <button className="btn btn-p" onClick={onNext}>Siguiente →</button>
-      </div>
+        <button className="btn btn-p" onClick={handleNext}>Siguiente →</button>
+      </nav>
     </div>
   );
 }

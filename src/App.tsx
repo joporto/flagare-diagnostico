@@ -11,6 +11,19 @@ import { useWizard } from './hooks/useWizard';
 import { saveDiagnostic, generateId } from './utils/storage';
 import { calculateOverallScore } from './utils/scoring';
 
+function StepProgress({ current, total }: { current: number; total: number }) {
+  return (
+    <div className="step-progress" role="progressbar" aria-valuenow={current} aria-valuemin={1} aria-valuemax={total} aria-label={`Paso ${current} de ${total}`}>
+      {Array.from({ length: total }, (_, i) => (
+        <div
+          key={i}
+          className={`step-progress-segment${i + 1 < current ? ' done' : i + 1 === current ? ' active' : ''}`}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function App() {
   const wizard = useWizard();
   const [showSaved, setShowSaved] = useState(false);
@@ -56,6 +69,7 @@ export default function App() {
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Saltar al contenido</a>
       <TopBar />
       <div className="topbar-actions">
         <button className="btn btn-s" onClick={() => setShowSaved(true)} style={{ fontSize: '12px', padding: '6px 14px' }}>
@@ -64,9 +78,13 @@ export default function App() {
       </div>
       <div className="app">
         <Sidebar currentStep={wizard.currentStep} challengeCount={wizard.challenges.length} maturityPercent={maturityPercent} />
-        <div className="panel" id="panel">
+        <main className="panel" id="main-content" role="main">
+          <StepProgress current={wizard.currentStep} total={5} />
+          <div aria-live="polite" className="sr-only">
+            Paso {wizard.currentStep} de 5
+          </div>
           {renderStep()}
-        </div>
+        </main>
       </div>
       {showSaved && <SavedSessions onClose={() => setShowSaved(false)} />}
     </>
